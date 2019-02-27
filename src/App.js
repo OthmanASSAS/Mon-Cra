@@ -12,29 +12,28 @@ class App extends Component {
 
     state = {
         dateMonday: moment().day('Monday'),
-        datesWeek:[],
+        datesWeek: [],
         activity: '',
         activities: ['RTT', 'Maladie']
 
 
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.generateDatesWeek()
     }
 
     generateDatesWeek = () => {
-        const dateMonday=this.state.dateMonday.clone()
-        
-        let datesWeek=[this.state.dateMonday];
-        for (let i = 0; i <= 3; i++) {
-            
-            datesWeek = [...datesWeek, dateMonday.add(1, 'Days').clone()]
+        let datesWeek = []
+        for (let i = 0; i <= 4; i++) {
+
+            // datesWeek.push(this.state.dateMonday.clone().add(i,'Days'))
+            datesWeek = [...datesWeek, this.state.dateMonday.clone().add(i, 'Days')]
         }
-        console.log({datesWeek});
-        this.setState({datesWeek})
+        console.log({ datesWeek })
+        this.setState({ datesWeek })
     }
-    
+
 
     addSubtractWeek = (e) => {
         const idButton = e.target.id
@@ -46,6 +45,7 @@ class App extends Component {
             newDateMonday.add(7, 'days')
         }
         this.setState({ dateMonday: newDateMonday })
+        this.generateDatesWeek()
     }
 
     handleActivity = (e) => {
@@ -76,7 +76,7 @@ class App extends Component {
                     submitActivity={this.submitActivity}
                     handleActivity={this.handleActivity}
                     activity={this.state.activity} />
-                <ActivitiesWeek 
+                <ActivitiesWeek
                     activities={this.state.activities}
                     datesWeek={this.state.datesWeek}
                 />

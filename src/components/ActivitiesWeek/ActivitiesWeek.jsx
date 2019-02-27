@@ -1,12 +1,16 @@
 import React from 'react';
 
-const ActivitiesWeek = ({activities,datesWeek}) => {
-    const renderInputsbyDate = datesWeek.map(date =><input value={date.format('DD-MM-YYYY')}/>)
+import styles from './ActivitiesWeek.module.css'
+
+import ActivityWeek from './ActivityWeek/ActivityWeek'
+
+
+const ActivitiesWeek = ({ activities, datesWeek }) => {
+
     return (
-        <div>
-          {  activities.map(activity=>{
-              return <div>{activity} {renderInputsbyDate}</div>
-          })}
+        <div >
+            {activities.map((activity, index) => <ActivityWeek key={index} activity={activity} datesWeek={datesWeek} />)}
+
 
         </div>
     );
