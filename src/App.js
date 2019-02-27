@@ -14,13 +14,31 @@ class App extends Component {
         dateMonday: moment().day('Monday'),
         datesWeek: [],
         activity: '',
-        activities: ['RTT', 'Maladie']
+        activities: ['RTT', 'Maladie'],
+        datasByInput: {
+            id: '',
+            date: '',
+            value: ''
+        },
+        datas: []
 
 
     }
 
     componentDidMount() {
         this.generateDatesWeek()
+    }
+
+    handleInputValue = (e, activity, date) => {
+        const value = e.target.value;
+        const id = e.target.id
+        const newDate = date.format("DD-MM-YYYY")
+       
+        let newDatasByInput = this.state.datasByInput
+        newDatasByInput = { id, date: newDate, value }
+        
+        this.setState({ datasByInput: newDatasByInput })
+       
     }
 
     generateDatesWeek = () => {
@@ -50,7 +68,7 @@ class App extends Component {
 
     handleActivity = (e) => {
         this.setState({ activity: e.target.value })
-        console.log(this.state.activity);
+
 
     }
 
@@ -82,6 +100,8 @@ class App extends Component {
                 <ActivitiesWeek
                     activities={this.state.activities}
                     datesWeek={this.state.datesWeek}
+                    handleInputValue={this.handleInputValue}
+                    datasByInput={this.state.datasByInput}
                 />
             </div>
         );
