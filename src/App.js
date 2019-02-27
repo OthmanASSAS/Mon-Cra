@@ -56,9 +56,12 @@ class App extends Component {
 
     submitActivity = (e) => {
         e.preventDefault()
-        let newActivities = [...this.state.activities]
-        newActivities = [...newActivities, this.state.activity]
-        this.setState({ activities: newActivities, activity: '' })
+        if (this.state.activity) {
+
+            let newActivities = [...this.state.activities]
+            newActivities = [...newActivities, this.state.activity]
+            this.setState({ activities: newActivities, activity: '' })
+        }
 
     }
 
