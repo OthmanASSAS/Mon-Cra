@@ -5,7 +5,7 @@ import styles from './ActivitiesWeek.module.css'
 import ActivityWeek from './ActivityWeek/ActivityWeek'
 
 
-const ActivitiesWeek = ({ activities, datesWeek, handleInputValue,datasByInput }) => {
+const ActivitiesWeek = ({ activities, datesWeek, handleInputValue,datasByInput, datas }) => {
 
     return (
         <div >
@@ -15,6 +15,7 @@ const ActivitiesWeek = ({ activities, datesWeek, handleInputValue,datasByInput }
                 datesWeek={datesWeek}
                 handleInputValue={handleInputValue}
                 datasByInput={datasByInput}
+                datas={datas}
                 />)}
 
 

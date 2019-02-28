@@ -17,6 +17,7 @@ class App extends Component {
         activities: ['RTT', 'Maladie'],
         datasByInput: {
             id: '',
+            activity: '',
             date: '',
             value: ''
         },
@@ -33,13 +34,29 @@ class App extends Component {
         const value = e.target.value;
         const id = e.target.id
         const newDate = date.format("DD-MM-YYYY")
+
+        let newDatasByInput = { id, activity, date: newDate, value }
        
-        let newDatasByInput = this.state.datasByInput
-        newDatasByInput = { id, date: newDate, value }
-        
-        this.setState({ datasByInput: newDatasByInput })
        
+        let newDatas = this.state.datas;
+
+        let foundDatasByInputInDatas = newDatas.find(element => {
+            return element.id === newDatasByInput.id
+        })
+        if (!foundDatasByInputInDatas) {
+           
+            newDatas.push(newDatasByInput);
+            this.setState({ datasByInput:newDatasByInput, datas: newDatas })
+        } else {
+            
+            let datasFiltered = newDatas.filter(element => element.id !== foundDatasByInputInDatas.id)
+            datasFiltered.push(newDatasByInput);
+            this.setState({datasByInput:newDatasByInput, datas: datasFiltered })
+        }
+
     }
+
+ 
 
     generateDatesWeek = () => {
         let datesWeek = []
@@ -48,7 +65,7 @@ class App extends Component {
             // datesWeek.push(this.state.dateMonday.clone().add(i,'Days'))
             datesWeek = [...datesWeek, this.state.dateMonday.clone().add(i, 'Days')]
         }
-        console.log({ datesWeek })
+       
         this.setState({ datesWeek })
     }
 
@@ -102,6 +119,7 @@ class App extends Component {
                     datesWeek={this.state.datesWeek}
                     handleInputValue={this.handleInputValue}
                     datasByInput={this.state.datasByInput}
+                    datas={this.state.datas}
                 />
             </div>
         );
