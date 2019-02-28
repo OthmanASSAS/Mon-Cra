@@ -1,3 +1,17 @@
-input{
+input, span{
     width:125px;
+    margin: 5px;
+}
+span{
+    text-align: left    
+}
+
+.iconRemove{
+    width:15px;
+    height: 15px
+}
+
+.container{
+   display: flex;
+   justify-content: center
 }

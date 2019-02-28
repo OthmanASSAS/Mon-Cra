@@ -30,6 +30,13 @@ class App extends Component {
         this.generateDatesWeek()
     }
 
+    deleteActivity = (e,activity)=>{
+       let activities = this.state.activities;
+       let newActivities = activities.filter(element=>element!== activity)
+        console.log(activity);
+        this.setState({activities:newActivities})
+    }
+
     handleInputValue = (e, activity, date) => {
         const value = e.target.value;
         const id = e.target.id
@@ -60,6 +67,7 @@ class App extends Component {
 
     generateDatesWeek = () => {
         let datesWeek = []
+       
         for (let i = 0; i <= 4; i++) {
 
             // datesWeek.push(this.state.dateMonday.clone().add(i,'Days'))
@@ -88,6 +96,7 @@ class App extends Component {
 
 
     }
+    
 
     submitActivity = (e) => {
         e.preventDefault()
@@ -103,6 +112,7 @@ class App extends Component {
 
 
     render() {
+        console.log(this.state)
         return (
             <div className="App">
                 <Week
@@ -120,6 +130,7 @@ class App extends Component {
                     handleInputValue={this.handleInputValue}
                     datasByInput={this.state.datasByInput}
                     datas={this.state.datas}
+                    deleteActivity={this.deleteActivity}
                 />
             </div>
         );

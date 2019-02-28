@@ -1,31 +1,34 @@
 import React from 'react';
 
-import styles from './ActivityWeek.module.css'
+import styles from './ActivityWeek.module.css';
+import iconRemove from '../../../assets/icones/delete-button.svg'
 
-const ActivityWeek = ({ activity, datesWeek, handleInputValue, datasByInput, datas }) => {
-let found;
-let id;
+const ActivityWeek = ({ activity, datesWeek, handleInputValue, datasByInput, datas,deleteActivity }) => {
 
-    return (<div container={styles.container}>
+    let found;
+    let id;
 
-        {activity}{datesWeek.map((date, index) => {
-             id = activity + '_' + date.format('DD-MM-YYYY')
-             found = datas.find(element => {
-                console.log({element})
+
+    return (<div className={styles.container}>
+
+        <span>{activity}</span>{datesWeek.map((date, index) => {
+            id = activity + '_' + date.format('DD-MM-YYYY')
+            found = datas.find(element => {
+
                 return element.id === id
             })
-            console.log(found)
+
             return (<input
                 id={id}
                 onChange={(e) => handleInputValue(e, activity, date)}
                 key={index}
-                value={found ? found.value : ''} 
-                />)
-        })}
+                value={found ? found.value : ''}
+            />)
+        })}<span onClick={(e)=>deleteActivity(e,activity)}><img src={iconRemove} alt='remove' className={styles.iconRemove} /></span>
 
     </div>)
 }
 
-    
+
 
 export default ActivityWeek;
