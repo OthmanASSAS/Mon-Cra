@@ -8,6 +8,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import InputAddActivity from "./components/InputAddActivity/InputAddActivity";
 import ActivitiesWeek from "./components/ActivitiesWeek/ActivitiesWeek";
 import Alert from "./components/Alert/Alert.jsx";
+import HeaderCra from './components/HeaderCra/HeaderCra.jsx';
 
 class App extends Component {
   state = {
@@ -121,6 +122,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <div className="App">
+      <HeaderCra/>
         <Week
           dateMonday={this.state.dateMonday}
           addSubtractWeek={this.addSubtractWeek}
